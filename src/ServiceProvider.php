@@ -37,7 +37,6 @@ class ServiceProvider extends BaseServiceProvider
         ]);
 
         // Map any routes
-        $this->mapLaraBugApiRoutes();
 
         // Create an alias to the larabug-js-client.blade.php include
         Blade::include('larabug::larabug-js-client', 'larabugJavaScriptClient');
@@ -66,18 +65,5 @@ class ServiceProvider extends BaseServiceProvider
                 return new Logger('larabug', [$handler]);
             });
         }
-    }
-
-    protected function mapLaraBugApiRoutes()
-    {
-        Route::group(
-            [
-                'namespace' => '\LaraBug\Http\Controllers',
-                'prefix' => 'larabug-api'
-            ],
-            function ($router) {
-                require __DIR__ . '/../routes/api.php';
-            }
-        );
     }
 }
