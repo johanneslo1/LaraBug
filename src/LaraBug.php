@@ -69,26 +69,6 @@ class LaraBug
             if ($count > 50) {
                 $count = 12;
             }
-
-            $lines = file($data['file']);
-            $data['executor'] = [];
-
-            for ($i = -1 * abs($count); $i <= abs($count); $i++) {
-                $currentLine = $data['line'] + $i;
-
-                $index = $currentLine - 1;
-
-                if (!array_key_exists($index, $lines)) {
-                    continue;
-                }
-
-                $data['executor'][] = [
-                    'line_number' => $currentLine,
-                    'line' => $lines[$index],
-                ];
-            }
-
-            $data['executor'] = array_filter($data['executor']);
         }
 
         $rawResponse = $this->logError($data);
